@@ -1,42 +1,20 @@
-# Nuxt 3 Minimal Starter
+# Memoria P&D Design
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+Website do projeto [Memória P&D Design](https://www.instagram.com/memoriapeddesign/)
 
-## Setup
+## Stack usada
 
-Make sure to install the dependencies:
+- Nuxtjs
+- Nuxt content
+- WindiCSS
+
+## Como instalar
 
 ```bash
 # yarn
 yarn install
 
-# npm
-npm install
+yarn run dev
 
-# pnpm
-pnpm install --shamefully-hoist
+yarn run build
 ```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
