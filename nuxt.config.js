@@ -14,4 +14,10 @@ export default defineNuxtConfig({
     css: [
         '@/assets/windi.css',
     ],
+
+    postcss: {
+        plugins: {
+            'postcss-nested': {},
+        },
+    }
 })
