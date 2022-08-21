@@ -7,6 +7,6 @@ export default defineNuxtConfig({
         'nuxt-windicss'
     ],
     content: {
-        // https://content.nuxtjs.org/api/configuration
+        documentDriven: true
     }
 })
