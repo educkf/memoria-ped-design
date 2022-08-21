@@ -1,23 +1,21 @@
 <script setup>
-
+const { navigation } = useContent()
 </script>
 
 <template>
-    <aside class="h-screen w-1/5 min-w-64 py-20 pl-20 pr-10 flex justify-end">
+    <aside class="h-screen sticky top-0 w-1/5 min-w-64 py-20 pl-20 pr-10 flex justify-end">
         <div class="w-36 flex flex-col ">
             <app-logo />
 
             <nav class="flex flex-col my-10">
-                <ContentNavigation v-slot="{ navigation }">
-                    <NuxtLink
-                        v-for="link of navigation"
-                        :key="link._path"
-                        :to="link._path"
-                        class="block text-xl leading-tight tracking-tight my-2 px-1"
-                    >
-                        {{ link.title }}
-                    </NuxtLink>
-                </ContentNavigation>
+                <NuxtLink
+                    v-for="link of navigation"
+                    :key="link._path"
+                    :to="link._path"
+                    class="block text-xl leading-tight tracking-tight my-2 px-1"
+                >
+                    {{ link.title }}
+                </NuxtLink>
             </nav>
 
             <div class="separator"></div>
