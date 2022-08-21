@@ -51,7 +51,7 @@ const currentEditionNavigation = computed(() => {
 <style lang="postcss">
     .edition-content > div {
         *:first-child {
-            @apply mt-0 text-xl;
+            @apply mt-0;
         }
 
         p {

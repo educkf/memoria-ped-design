@@ -19,6 +19,11 @@ useContentHead(page)
 
 <style>
 
+    html {
+        font-family: 'Manrope', sans-serif !important;
+        overflow: visible;
+    }
+
     .separator {
         width: 100%;
         height: 10px;

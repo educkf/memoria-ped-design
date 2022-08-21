@@ -4,8 +4,8 @@
 <template>
     <div class="max-w-4xl mx-auto flex px-4">
         <div class="mt-22">
-             <section class="page-content ml-10 mb-48">
-                <ContentDoc />
+             <section class="page-content mb-48">
+                <slot />
             </section>
         </div>
     </div>
