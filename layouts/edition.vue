@@ -31,11 +31,10 @@ watch(() => route.params.slug, async () => {
 </script>
 
 <template>
-    <div v-if="data" class="max-w-4xl mx-auto flex px-4">
-        /layout/edition.vue
+    <div v-if="data" class="max-w-5xl mx-auto flex px-4">
         <aside v-if="data" class="mt-22 mb-10">
             <figure class="w-40 h-56">
-                <img :src="`/assets/images/editions/${data.edition.logo}`" :alt="data.edition.title" class="w-full">
+                <img :src="`/images/editions/${data.edition.logo}`" :alt="data.edition.title" class="w-full">
             </figure>
 
             <nav class="w-48">

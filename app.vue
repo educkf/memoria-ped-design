@@ -23,7 +23,7 @@
     .separator {
         width: 100%;
         height: 10px;
-        background-image: url('/assets/images/separator.png');
+        background-image: url('/images/separator.png');
         background-size: cover;
     }
 

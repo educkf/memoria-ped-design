@@ -26,7 +26,7 @@ const { data } = await useAsyncData(`content-navigation`, () => {
 <style scoped>
 
     aside {
-        background: url('/assets/images/bg.jpg') no-repeat top left;
+        background: url('/images/bg.jpg') no-repeat top left;
         background-size: cover;
     }
 
@@ -35,7 +35,7 @@ const { data } = await useAsyncData(`content-navigation`, () => {
     }
 
     nav a.router-link-active {
-        background-image: url('/assets/images/separator.png');
+        background-image: url('/images/separator.png');
         font-weight: 700;
     }
 
