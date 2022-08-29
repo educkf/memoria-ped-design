@@ -1,8 +1,4 @@
 <script setup>
-
-const { page } = useContent()
-useContentHead(page)
-
 </script>
 
 <template>

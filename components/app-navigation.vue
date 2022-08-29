@@ -1,5 +1,7 @@
 <script setup>
-const { navigation } = useContent()
+const { data } = await useAsyncData(`content-navigation`, () => {
+    return queryContent().where({ layout: 'default', navigation: { $ne: false } }).only(['title', '_path', 'layout', 'navigation']).find()
+})
 </script>
 
 <template>
@@ -8,14 +10,12 @@ const { navigation } = useContent()
             <app-logo />
 
             <nav class="flex flex-col my-10">
-                <NuxtLink
-                    v-for="link of navigation"
-                    :key="link._path"
-                    :to="link._path"
-                    class="block text-xl leading-tight tracking-tight my-2 px-1"
-                >
-                    {{ link.title }}
+                <NuxtLink v-for="link of data" :key="link._path" :to="link._path"
+                    class="block text-xl leading-tight tracking-tight my-2 px-1">
+                    {{ link.navigation.title }}
                 </NuxtLink>
+
+                <!-- <pre>{{ data }}</pre> -->
             </nav>
 
             <div class="separator"></div>

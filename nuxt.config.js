@@ -7,10 +7,6 @@ export default defineNuxtConfig({
         'nuxt-windicss'
     ],
 
-    content: {
-        documentDriven: true
-    },
-
     css: [
         '@/assets/windi.css',
     ],
