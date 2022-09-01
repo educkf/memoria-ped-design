@@ -56,7 +56,7 @@ watch(() => route.params.slug, async () => {
                 <p class="text-lg font-400">{{ data.edition.year }}</p>
             </header>
 
-            <section class="edition-content ml-10 mb-48">
+            <section class="[ edition-content ] ml-10 mb-48">
                 <ContentRenderer :key="path" :value="data" />
             </section>
         </div>
@@ -67,6 +67,20 @@ watch(() => route.params.slug, async () => {
 
     nav a.router-link-active {
         font-weight: 700;
+    }
+
+    .edition-content {
+        & :deep(h1) {
+            @apply text-3xl mb-6 mt-10 font-extrabold
+        }
+
+        & :deep(h3) {
+            @apply text-lg mb-1 leading-tight
+        }
+
+        & :deep(h3 ~ p) {
+            @apply text-base mb-3
+        }
     }
 
 </style>
