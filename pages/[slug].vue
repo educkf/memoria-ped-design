@@ -3,13 +3,27 @@ const { path } = useRoute()
 const { data } = await useAsyncData(`content-${path}`, () => {
     return queryContent().where({ _path: path }).findOne()
 })
+
 </script>
 
 <template>
     <main>
-        [slug].vue
-        <div>
+        <div class="page-content">
             <ContentRenderer :value="data" />
         </div>
     </main>
 </template>
+
+<style lang="postcss" scoped>
+
+    .page-content {
+        & :deep(h1) {
+            @apply text-4xl mb-6 font-extrabold
+        }
+
+        & :deep(h2) {
+            @apply text-3xl
+        }
+    }
+
+</style>

@@ -1,8 +1,21 @@
 <script setup>
+const loading = ref(null);
+const nuxtApp = useNuxtApp();
+
+nuxtApp.hook("page:start", () => {
+    loading.value.start();
+})
+
+nuxtApp.hook("page:finish", () => {
+    loading.value.finish();
+    window.scrollTo(0, 0);
+})
 </script>
 
 <template>
     <div class="flex">
+        <app-loading ref="loading" />
+
         <app-navigation />
 
         <div class="w-full">
@@ -14,6 +27,7 @@
 </template>
 
 <style>
+    @import '/fonts/manrope/manrope.css';
 
     html {
         font-family: 'Manrope', sans-serif !important;

@@ -1,72 +1,46 @@
 <script setup>
-
-const route = useRoute()
-
-const { path } = useRoute()
-const { data } = await useAsyncData(`content-${path}`, () => {
-    return queryContent()
-        .where({ _path: path })
-        .findOne()
-})
-
-const { data: navigation } = await useAsyncData(`content-${path}-navigation`, () => {
+const { data: navigation } = await useAsyncData(`content-editions`, () => {
     return queryContent()
         .where({
             layout: 'edition',
-            edition: { id: route.params.slug[0] }
         }).only(
-            ['title', '_path', 'layout', 'navigation']
+            ['title', '_path', 'layout', 'navigation', 'edition']
         ).find()
 })
 
-watch(() => route.params.slug, async () => {
-    const { path } = useRoute()
-    const newContent = await queryContent()
-        .where({ _path: path })
-        .findOne()
+const editionsNav = computed(() => {
+    const editions = navigation.value.reduce((total, item) => {
+        if (item?.edition?.id)
+            return total.find(added => added.edition.id === item.edition.id)
+                ? total
+                : [...total, item]
+        else return total
+    }, [])
 
-    data.value = newContent
+    return [...editions].sort(
+        (a, b) => Number(b.edition.year) - Number(a.edition.year)
+    )
 })
-
 </script>
 
 <template>
-    <div v-if="data" class="max-w-5xl mx-auto flex px-4">
-        <aside v-if="data" class="mt-22 mb-10">
-            <figure class="w-40 h-56">
-                <img :src="`/images/editions/${data.edition.logo}`" :alt="data.edition.title" class="w-full">
-            </figure>
-
-            <nav class="w-48">
-                <NuxtLink v-for="link of navigation" :key="link._path" :to="link._path"
-                    class="block text-xl leading-tight tracking-tight mb-4 px-1">
-                    {{ link.navigation.title }}
-                </NuxtLink>
-            </nav>
-        </aside>
-
-        <div class="mt-22">
-            <header class="ml-10 pr-20 h-48 mb-10 flex flex-col justify-center">
-                <h1 class="text-2xl font-800 mb-2 leading-tight">{{ data.edition.title }}</h1>
-                <p class="text-lg font-400 mb-1">{{ data.edition.location }}</p>
-                <p class="text-lg font-400">{{ data.edition.year }}</p>
-            </header>
-
-            <section class="edition-content ml-10 mb-48">
-                <ContentRenderer :key="path" :value="data" />
-            </section>
+    <div class="w-full flex relative">
+        <nav
+            class="[ edition-menu ] pl-6 pr-3 pt-20 border-r border-r-brown-light min-w-64 w-1/4 h-screen overflow-auto sticky top-0">
+            <NuxtLink v-for="link of editionsNav" :key="link._path" :to="link._path"
+                class="flex text-xl leading-tight tracking-tight mb-4 px-1"
+            >
+                <div class="text-base ml-2">
+                    <p class="font-bold">{{ link.edition.location }}</p>
+                    <p>{{ link.edition.year }}</p>
+                </div>
+            </NuxtLink>
+        </nav>
+        <div class="w-full grow">
+            <NuxtPage />
         </div>
     </div>
 </template>
-
-
-<style lang="postcss" scoped>
-
-    nav a.router-link-active {
-        font-weight: 700;
-    }
-
-</style>
 
 <style lang="postcss">
     .edition-content > div {
@@ -77,5 +51,9 @@ watch(() => route.params.slug, async () => {
         p {
             @apply text-lg leading-relaxed mb-4;
         }
+    }
+
+    .edition-menu .router-link-active {
+        @apply text-brown-default
     }
 </style>
