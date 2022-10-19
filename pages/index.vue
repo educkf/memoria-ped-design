@@ -4,6 +4,11 @@ definePageMeta({
     layout: "home",
 })
 
+useHead({
+    title: 'Memória P&D Design',
+    description: 'Acervo colaborativo do Congresso Brasileiro de Pesquisa e Desenvolvimento em Design - P&D Design.'
+})
+
 </script>
 
 <template>

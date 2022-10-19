@@ -4,6 +4,11 @@ definePageMeta({
     layout: "edition",
 })
 
+useHead({
+    title: 'Memória P&D Design',
+    description: 'Acervo colaborativo do Congresso Brasileiro de Pesquisa e Desenvolvimento em Design - P&D Design.'
+})
+
 const route = useRoute()
 
 const { path } = useRoute()
