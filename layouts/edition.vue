@@ -18,7 +18,7 @@ const editionsNav = computed(() => {
     }, [])
 
     return [...editions].sort(
-        (a, b) => Number(b.edition.year) - Number(a.edition.year)
+        (a, b) => Number(a.edition.year) - Number(b.edition.year)
     )
 })
 </script>
@@ -26,13 +26,18 @@ const editionsNav = computed(() => {
 <template>
     <div class="w-full flex relative">
         <nav
-            class="[ edition-menu ] pl-6 pr-3 pt-20 border-r border-r-brown-light min-w-64 w-1/4 h-screen overflow-auto sticky top-0">
-            <NuxtLink v-for="link of editionsNav" :key="link._path" :to="link._path"
-                class="flex text-xl leading-tight tracking-tight mb-4 px-1"
+            class="[ edition-menu ] pl-6 pr-3 py-20 border-r border-r-brown-light min-w-64 w-1/4 h-screen overflow-auto sticky top-0">
+            <NuxtLink
+                v-for="link of editionsNav"
+                :key="link._path"
+                :to="link.edition.status === 'OK' ? link._path : null"
+                class="flex text-xl leading-tight tracking-tight mb-6 px-1"
+                :class="link.edition.status === 'Pending' ? 'opacity-50' : ''"
             >
                 <div class="text-base ml-2">
                     <p class="font-bold">{{ link.edition.location }}</p>
                     <p>{{ link.edition.year }}</p>
+                    <p v-if="link.edition.status === 'Pending'" class="italic text-xs">Em breve</p>
                 </div>
             </NuxtLink>
         </nav>
@@ -43,7 +48,7 @@ const editionsNav = computed(() => {
 </template>
 
 <style lang="postcss">
-    .edition-content > div {
+.edition-content > div {
         *:first-child {
             @apply mt-0;
         }
@@ -55,5 +60,25 @@ const editionsNav = computed(() => {
 
     .edition-menu .router-link-active {
         @apply text-brown-default
+    }
+
+    .edition-menu {
+        scrollbar-width: auto;
+        scrollbar-color: rgb(218, 172, 129) #ebebeb;
+    }
+
+    /* Chrome, Edge, and Safari */
+    .edition-menu::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .edition-menu::-webkit-scrollbar-track {
+        background: #ebebeb;
+    }
+
+    .edition-menu::-webkit-scrollbar-thumb {
+        background-color: rgb(218, 172, 129);
+        border-radius: 0px;
+        border: 0px solid #ffffff;
     }
 </style>
