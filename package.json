@@ -12,5 +12,8 @@
     "nuxt-windicss": "^2.5.2",
     "postcss-nested": "^5.0.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "firebase-admin": "^11.2.0",
+    "firebase-functions": "^4.0.1"
+  }
 }
