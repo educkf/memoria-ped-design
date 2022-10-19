@@ -1,14 +1,16 @@
 <script setup>
-const loading = ref(null);
-const nuxtApp = useNuxtApp();
+const route = useRoute()
+
+const loading = ref(null)
+const nuxtApp = useNuxtApp()
 
 nuxtApp.hook("page:start", () => {
-    loading.value.start();
+    loading.value.start()
 })
 
 nuxtApp.hook("page:finish", () => {
-    loading.value.finish();
-    window.scrollTo(0, 0);
+    loading.value.finish()
+    window.scrollTo(0, 0)
 })
 </script>
 
@@ -16,7 +18,7 @@ nuxtApp.hook("page:finish", () => {
     <div class="flex">
         <app-loading ref="loading" />
 
-        <app-navigation />
+        <app-navigation-sidebar v-if="route.path !== '/'" />
 
         <div class="w-full">
             <NuxtLayout>

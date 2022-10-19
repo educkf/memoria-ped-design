@@ -1,0 +1,12 @@
+.page-content h1,
+.page-content h2,
+.page-content h3,
+.page-content h4,
+.page-content p {
+    text-indent: 3rem;
+}
+
+.page-content .references p {
+    padding-left: 3em;
+    text-indent: -3em;
+}
