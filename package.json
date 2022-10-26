@@ -13,6 +13,7 @@
     "postcss-nested": "^5.0.6"
   },
   "dependencies": {
+    "@ubclaunchpad/vue-fathom": "^2.0.0",
     "firebase-admin": "^11.2.0",
     "firebase-functions": "^4.0.1"
   }
