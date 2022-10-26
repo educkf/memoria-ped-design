@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Cache dependencies
+      - name: Cache Dependencies
         uses: actions/cache@v1
         with:
           path: '**/node_modules'
@@ -25,6 +25,8 @@ jobs:
 
       - name: Build Firebase Preset
         run: yarn install --frozen-lockfile && NITRO_PRESET=firebase yarn build
+
+      - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -32,7 +34,7 @@ jobs:
           channelId: live
           projectId: memoria-ped
 
-      - name: Install npm packages
+      - name: Install Server Packages
         run: |
           cd .output/server
           yarn
