@@ -18,3 +18,11 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEMORIA_PED }}'
           channelId: live
           projectId: memoria-ped
+      - name: Install npm packages
+        run: |
+          cd .output/server
+          yarn
+      - name: Deploy to Firebase Functions
+        uses: chrissank/deploy-firebase-functions@1.0.0
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEMORIA_PED }}
