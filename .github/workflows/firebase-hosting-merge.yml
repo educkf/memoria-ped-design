@@ -26,21 +26,22 @@ jobs:
       - name: Build Firebase Preset
         run: yarn install --frozen-lockfile && NITRO_PRESET=firebase yarn build
 
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEMORIA_PED }}'
-          channelId: live
-          projectId: memoria-ped
+    #   - name: Deploy to Firebase Hosting
+    #     uses: FirebaseExtended/action-hosting-deploy@v0
+    #     with:
+    #       repoToken: '${{ secrets.GITHUB_TOKEN }}'
+    #       firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEMORIA_PED }}'
+    #       channelId: live
+    #       projectId: memoria-ped
 
       - name: Install Server Packages
         run: |
           cd .output/server
           yarn
 
-      - name: Create SA key
-        run: echo '${{ secrets.GSA_KEY }}' > $HOME/gcloud.json
-
       - name: Deploy to Firebase Functions
-        run: export GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud.json && npx firebase-tools deploy --only functions --json
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy
+        env:
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEMORIA_PED }}
