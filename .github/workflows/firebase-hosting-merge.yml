@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Cache Dependencies
         uses: actions/cache@v1
@@ -40,6 +40,6 @@ jobs:
           yarn
 
       - name: Deploy to Firebase Functions
-        uses: chrissank/deploy-firebase-functions@1.0.0
+        run: npx firebase-tools deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MEMORIA_PED }}
