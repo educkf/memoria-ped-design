@@ -24,14 +24,17 @@ const editionsNav = computed(() => {
 </script>
 
 <template>
-    <div class="w-full flex relative">
+    <div class="w-full flex flex-col md:flex-row relative">
         <nav
-            class="[ edition-menu ] pl-6 pr-3 py-20 border-r border-r-brown-light min-w-64 w-1/4 h-screen overflow-auto sticky top-0">
+            class="[ edition-menu ] pt-4 md:pl-6 md:pr-3 py-4 md:py-20 border-r border-r-brown-light
+                w-full md:min-w-64 md:w-1/4 md:h-screen overflow-x-auto overflow-y-hidden md:overflow-y-auto md:overflow-x-hidden md:sticky top-0
+                flex flex-nowrap md:block
+            ">
             <NuxtLink
                 v-for="link of editionsNav"
                 :key="link._path"
                 :to="link.edition.status === 'OK' ? link._path : null"
-                class="flex text-xl leading-tight tracking-tight mb-6 px-1"
+                class="min-w-[120px] w-[120px] md:w-full bg-gray-100 md:bg-transparent mx-2 rounded-md flex items-center text-xl leading-tight tracking-tight md:mb-6 px-1"
                 :class="link.edition.status === 'Pending' ? 'opacity-50' : ''"
             >
                 <div class="text-base ml-2">

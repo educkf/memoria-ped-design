@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <aside class="h-screen sticky top-0 w-1/5 min-w-64 py-20 pl-20 pr-10 flex justify-end">
+    <aside class="md:h-screen relative md:sticky top-0 w-full md:w-1/5 min-w-64 py-10 md:py-20 px-0 md:pl-20 md:pr-10 flex justify-center md:justify-end">
         <app-navigation />
     </aside>
 </template>

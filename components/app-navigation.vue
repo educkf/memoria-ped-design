@@ -5,10 +5,10 @@ const { data } = await useAsyncData(`content-navigation`, () => {
 </script>
 
 <template>
-    <div class="w-36 flex flex-col ">
+    <div class="md:w-36 flex flex-row md:flex-col">
         <app-logo />
 
-        <nav class="flex flex-col my-10">
+        <nav class="flex flex-col my-0 ml-4 md:my-10 md:ml-0">
             <NuxtLink v-for="link of data" :key="link._path" :to="link._path"
                 class="block text-xl leading-tight tracking-tight my-2 px-1">
                 {{ link.navigation.title }}
@@ -17,7 +17,7 @@ const { data } = await useAsyncData(`content-navigation`, () => {
             <!-- <pre>{{ data }}</pre> -->
         </nav>
 
-        <div class="separator"></div>
+        <div class="hidden md:block separator"></div>
     </div>
 </template>
 

@@ -15,7 +15,7 @@ nuxtApp.hook("page:finish", () => {
 </script>
 
 <template>
-    <div class="flex">
+    <div class="flex flex-col md:flex-row">
         <app-loading ref="loading" />
 
         <app-navigation-sidebar v-if="route.path !== '/'" />
